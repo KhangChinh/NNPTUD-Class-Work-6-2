@@ -34,7 +34,8 @@ router.get('/slug/:slug', function (req, res, next) {
 });
 
 /* GET products by category ID */
-router.get('/:id/products', function (req, res, next) {
+///api/v1/categories/9
+router.get('/:id', function (req, res, next) {
     let categoryId = parseInt(req.params.id);
     let result = data.filter(
         function (e) {
@@ -42,23 +43,6 @@ router.get('/:id/products', function (req, res, next) {
         }
     );
     res.status(200).send(result);
-});
-
-/* GET category by ID */
-///api/v1/categories/1
-router.get('/:id', function (req, res, next) {
-    let result = categories.find(
-        function (e) {
-            return (!e.isDeleted) && e.id == req.params.id
-        }
-    );
-    if (result) {
-        res.status(200).send(result)
-    } else {
-        res.status(404).send({
-            message: "ID NOT FOUND"
-        })
-    }
 });
 
 /* CREATE new category */
